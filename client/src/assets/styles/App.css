@@ -1,0 +1,37 @@
+@media screen and (min-width: 768px) {
+  .Recipes,
+  .More-like-this {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .More-like-this {
+    grid-gap: 8px;
+  }
+  .Top-ratings,
+  .Latest {
+    display: flex;
+  }
+  .Top-ratings > div {
+    margin: 5px;
+    width: 500px;
+    min-height: 100px;
+    max-height: 150px;
+  }
+  .Latest > div {
+    margin: 5px;
+    width: 500px;
+    min-height: 100px;
+    max-height: 150px;
+  }
+  .recipe-img {
+    height: 300px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .Recipes,
+  .More-like-this {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+  }
+}

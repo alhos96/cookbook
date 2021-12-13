@@ -1,0 +1,29 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+body {
+  background-color: #f4ecd9;
+  color: rgb(34, 34, 34);
+}
+
+.error {
+  color: red;
+  font-size: 10px;
+  text-align: center;
+}
+.success {
+  color: green;
+  font-size: 10px;
+  text-align: center;
+}
+
+.avatar {
+  cursor: pointer;
+}
+
+.link {
+  color: #285678;
+  cursor: pointer;
+}

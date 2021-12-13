@@ -1,0 +1,10 @@
+.Navbar {
+  position: relative;
+  background-color: #f5deb3 !important;
+}
+.logo {
+  position: absolute;
+  height: 60px;
+
+  transition: 0.8s ease;
+}
