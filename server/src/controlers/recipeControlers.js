@@ -5,15 +5,13 @@ exports.createRecipe = async (req, res, next) => {
   const { name, ingredients, instructions, description, category, rating } = req.body;
   const { userId, userName } = req.userData;
 
-  console.log(req.file);
-
   let ingredArr = ingredients.split(",");
 
   const newRecipe = new Recipe({
     name,
     ingredients: ingredArr,
     instructions,
-    recipeImage: req.file.filename,
+    recipeImage: req.file ? req.file.filename : "noImage.png",
     author: userName,
     description,
     category,
