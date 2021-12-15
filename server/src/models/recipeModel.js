@@ -15,6 +15,7 @@ exports.Recipe = model(
       category: String,
       rating: [],
       usersWhoRated: [],
+      isSeeded: { type: Boolean, default: false },
     },
     { timestamps: true }
   )
