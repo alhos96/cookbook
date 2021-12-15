@@ -129,7 +129,7 @@ function Recipe() {
                 className="recipe-img"
                 component="img"
                 height="194"
-                image={`http://localhost:5000/uploads/${recipe.recipeImage}`}
+                image={recipe.isSeeded ? recipe.recipeImage : `http://localhost:5000/uploads/${recipe.recipeImage}`}
                 alt={recipe.name}
               />
               <CardContent>
