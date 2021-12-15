@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, FormControl, Typography, TextField, Button, Divider } from "@mui/material";
 
 //helpers
-import { userLogin } from "../store/usersSlice";
+import { userLogin, messageReset } from "../store/usersSlice";
 import { helpers, methods } from "../helpers";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,7 +58,14 @@ function Login() {
         <Button sx={{ mt: 1, mb: 2 }} variant="contained" disableElevation type="submit" children="login" fullWidth />
 
         <Divider />
-        <Typography onClick={() => navigate("/register")} align="center" sx={{ mt: 1 }}>
+        <Typography
+          onClick={() => {
+            navigate("/register");
+            dispatch(messageReset());
+          }}
+          align="center"
+          sx={{ mt: 1 }}
+        >
           Don't have account? <span className="link">Register!</span>
         </Typography>
       </Box>

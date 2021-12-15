@@ -4,7 +4,7 @@ import { Box, Typography, TextField, Button, Divider } from "@mui/material";
 import { helpers, methods } from "../helpers";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { userRegister } from "../store/usersSlice";
+import { userRegister, messageReset } from "../store/usersSlice";
 
 function Register() {
   //helpers
@@ -78,7 +78,15 @@ function Register() {
         <Button sx={{ mt: 1, mb: 2 }} variant="contained" disableElevation type="submit" children="register" fullWidth />
 
         <Divider />
-        <Typography onClick={() => navigate("/login")} align="center" sx={{ mt: 1 }}>
+
+        <Typography
+          onClick={() => {
+            navigate("/login");
+            dispatch(messageReset());
+          }}
+          align="center"
+          sx={{ mt: 1 }}
+        >
           Already have account? <span className="link">Login!</span>
         </Typography>
       </Box>
