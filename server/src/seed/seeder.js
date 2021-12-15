@@ -25,6 +25,7 @@ recipes.forEach(async (recipe, i) => {
     description: recipe.description,
     category: recipe.category,
     rating: recipe.rating,
+    isSeeded: recipe.isSeeded,
   });
 
   try {

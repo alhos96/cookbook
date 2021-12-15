@@ -11,6 +11,7 @@ const recipes = [
     category: "Lunch",
     rating: [4, 5, 3.5, 4.5],
     usersWhoRated: ["ldartnall0", "nfrain2", "aeglaise3", "dsolomonides4"],
+    isSeeded: true,
   },
   {
     _id: "61b64d11e9455038c60f2185",
@@ -24,6 +25,7 @@ const recipes = [
     category: "Lunch",
     rating: [3, 4, 2, 1.5, 2.5, 3],
     usersWhoRated: ["ldartnall0", "rhousin6", "mclendinning8", "dsolomonides4", "okatte9", "yhabens5"],
+    isSeeded: true,
   },
   {
     _id: "61b64d11e9455038c60f2186",
@@ -37,6 +39,7 @@ const recipes = [
     category: "Breakfast",
     rating: [3, 4, 2, 4.5, 5],
     usersWhoRated: ["rhousin6", "bodoogan1", "aeglaise3", "okatte9", "yhabens5"],
+    isSeeded: true,
   },
   {
     _id: "61b64d11e9455038c60f2187",
@@ -50,6 +53,7 @@ const recipes = [
     category: "Entertaining",
     rating: [5, 4, 4, 3, 5],
     usersWhoRated: ["rhousin6", "bodoogan1", "aeglaise3", "okatte9", "yhabens5"],
+    isSeeded: true,
   },
   {
     _id: "61b64d11e9455038c60f2188",
@@ -62,6 +66,7 @@ const recipes = [
     description: "Fine dessert, amazing sweet cake. Very nice to eat sweet cookies. Bake for 30-40 more minutes, until squash tender. ",
     category: "Desserts",
     rating: [3, 2, 2, 1.5, 2.5, 4],
+    isSeeded: true,
   },
   {
     _id: "61b64d11e9455038c60f2189",
@@ -75,6 +80,7 @@ const recipes = [
       "Fine meal, grat to eat for lunch. Mix the dried mixes together in a Blend in remaining ingredients. Drop dough by rounded teaspoonfuls about 2 inches apart onto ungreased baking sheet.",
     category: "Desserts",
     rating: [1, 2.5, 2, 1.5, 2.5, 3],
+    isSeeded: true,
   },
   {
     _id: "61b64d11e9455038c60f218a",
@@ -95,6 +101,7 @@ const recipes = [
       "Press half into 8-inch (2 L) square parchment paper–lined metal cake pan; spread with blueberry filling. Bake in centre of 350°F oven until light golden, about 45 minutes. Let cool on rack before cutting into squares.",
     category: "Desserts",
     rating: [3, 4],
+    isSeeded: true,
   },
   {
     _id: "61b64d11e9455038c60f218b",
@@ -108,6 +115,7 @@ const recipes = [
       "Place the sweet potatoes into a saucepan and fill with enough water to cover. Simmer over medium-high heat until tender, about 15 minutes. Drain and set aside.",
     category: "Salads",
     rating: [3, 4, 2, 3.5, 2, 3.5, 4],
+    isSeeded: true,
   },
   {
     _id: "61b64d11e9455038c60f218c",
@@ -121,6 +129,7 @@ const recipes = [
       "With flavors reminiscent of Morocco and Mexico, this easy yet richly-flavored stew contains loads of chicken, vegetables, and some surprising spices! If desired, pass lime wedges to squeeze over individual servings.",
     category: "Salads",
     rating: [3, 3, 2, 5, 2.5, 1.5, 5, 3],
+    isSeeded: true,
   },
   {
     _id: "61b64d11e9455038c60f218d",
@@ -135,6 +144,7 @@ const recipes = [
       "Here's a make-ahead meal you definitely don't want to miss. Just store the prepped ingredients in the freezer until it's time throw them into the Crock-Pot.  ",
     category: "Salads",
     rating: [3, 4, 3],
+    isSeeded: true,
   },
 ];
 
