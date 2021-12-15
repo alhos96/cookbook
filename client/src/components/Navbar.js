@@ -17,7 +17,9 @@ function Navbar() {
 
   //global state
   const [user, setUser] = useState("");
+  const token = sessionStorage.getItem("token");
   const recipes = useSelector((state) => state.recipes.recipes);
+  const userName = useSelector((state) => state.users.user.name);
 
   //popper state
   const [anchorEl, setAnchorEl] = useState(null);
@@ -26,7 +28,7 @@ function Navbar() {
 
   useEffect(() => {
     setUser(sessionStorage.getItem("user"));
-  }, [recipes]);
+  }, [userName]);
 
   return (
     <AppBar sx={{ height: "80px", p: 2, mb: 3, position: "sticky", top: 0, zIndex: "2" }} className="Navbar">
