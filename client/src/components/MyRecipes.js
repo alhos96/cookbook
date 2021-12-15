@@ -41,13 +41,14 @@ function MyRecipes() {
   const [orderDirection, setOrderDirection] = useState("asc");
   const [count, setCount] = useState(0);
 
-  console.log(data);
   //side effects
   useEffect(() => {
-    dispatch(getUserRecipes("/recipes/users-recipes", get, token, setData));
+    dispatch(getUserRecipes("/recipes/users-recipes", get, token, false));
   }, []);
 
-  //function
+  useEffect(() => {
+    setData(recipes);
+  }, [recipes]);
 
   return (
     <Box>
