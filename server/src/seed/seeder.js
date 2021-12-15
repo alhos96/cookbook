@@ -8,57 +8,65 @@ const config = require("../../config");
 const bcrypt = require("bcrypt");
 
 mongoose.connect(config.mongo).then(() => {
-  console.log("seeding started");
+  mongoose.connection.collections["users"].drop(function (err) {
+    console.log("collection dropped");
+  });
+  mongoose.connection.collections["recipes"].drop(function (err) {
+    console.log("collection dropped");
+  });
+  seed();
 });
 
 var done = 0;
 recipesDone = false;
 
-recipes.forEach(async (recipe, i) => {
-  let newRecipe = new Recipe({
-    _id: recipe._id,
-    name: recipe.name,
-    ingredients: recipe.ingredients,
-    instructions: recipe.instructions,
-    recipeImage: recipe.recipeImage,
-    author: recipe.author,
-    description: recipe.description,
-    category: recipe.category,
-    rating: recipe.rating,
-    isSeeded: recipe.isSeeded,
-  });
-
-  try {
-    await newRecipe.save();
-    done++;
-  } catch (error) {
-    console.log(error);
-  }
-
-  if (done === recipes.length) {
-    console.log("seeding recipes done");
-    done = 0;
-    users.forEach(async (user, i) => {
-      let hashedPassword = await bcrypt.hash(user.password, 12);
-      let newUser = new User({
-        name: user.name,
-        email: user.email,
-        password: hashedPassword,
-        recipes: user.recipes,
-        active: user.active,
-      });
-
-      try {
-        await newUser.save();
-        done++;
-      } catch (error) {
-        console.log(error);
-      }
-      if (done === users.length) {
-        console.log("seeding users done");
-        console.log("all done");
-        mongoose.disconnect();
-      }
+function seed() {
+  recipes.forEach(async (recipe, i) => {
+    let newRecipe = new Recipe({
+      _id: recipe._id,
+      name: recipe.name,
+      ingredients: recipe.ingredients,
+      instructions: recipe.instructions,
+      recipeImage: recipe.recipeImage,
+      author: recipe.author,
+      description: recipe.description,
+      category: recipe.category,
+      rating: recipe.rating,
+      isSeeded: recipe.isSeeded,
     });
-  }
-});
+
+    try {
+      await newRecipe.save();
+      done++;
+    } catch (error) {
+      console.log(error);
+    }
+
+    if (done === recipes.length) {
+      console.log("seeding recipes done");
+      done = 0;
+      users.forEach(async (user, i) => {
+        let hashedPassword = await bcrypt.hash(user.password, 12);
+        let newUser = new User({
+          name: user.name,
+          email: user.email,
+          password: hashedPassword,
+          recipes: user.recipes,
+          active: user.active,
+        });
+
+        try {
+          await newUser.save();
+          done++;
+        } catch (error) {
+          console.log(error);
+        }
+        if (done === users.length) {
+          console.log("seeding users done");
+          console.log("all done");
+          mongoose.disconnect();
+        }
+      });
+    }
+  });
+}
