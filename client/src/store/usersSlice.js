@@ -16,9 +16,12 @@ const slice = createSlice({
   reducers: {
     userLoggedIn: (users, { payload }) => {
       sessionStorage.setItem("token", payload.data.token);
+      sessionStorage.setItem("user", payload.data.name);
       users.loggedIn = true;
       users.error = "";
       users.message = "";
+      users.user.name = payload.data.name;
+      users.user.email = payload.data.email;
     },
     userRegistered: (users, { payload }) => {
       users.registered = true;
@@ -29,17 +32,23 @@ const slice = createSlice({
       users.user.email = payload.data.email;
     },
     updatedSucessfuly: (users, { payload }) => {
+      sessionStorage.setItem("user", payload.data.name);
       users.user.name = payload.data.name;
       users.user.email = payload.data.email;
       users.message = "New info saved";
     },
     userLoggedOut: (users, { payload }) => {
       users.loggedIn = false;
+      users.user = {
+        name: "",
+        email: "",
+      };
       sessionStorage.removeItem("token");
       sessionStorage.removeItem("user");
     },
     messageReset: (users, { payload }) => {
       users.message = "";
+      users.error = "";
     },
     gotError: (users, { payload }) => {
       users.error = payload;
