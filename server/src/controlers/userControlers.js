@@ -188,7 +188,7 @@ exports.login = async (req, res, next) => {
     return next(err);
   }
 
-  res.status(201).json({ token: token });
+  res.status(201).json({ token: token, name: existingUser.name, email: existingUser.email });
   console.log("User logged in");
 };
 
