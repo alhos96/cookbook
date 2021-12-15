@@ -33,7 +33,6 @@ function MoreLikeThisCard({ category, idToAvoid }) {
     if (window.innerWidth < 1020) {
       setShowAmount(3);
     }
-    console.log("resize");
   }
 
   window.onresize = windowSizeTracker;
@@ -51,7 +50,12 @@ function MoreLikeThisCard({ category, idToAvoid }) {
               return (
                 <Card key={index} id={recipe._id} onClick={(e) => navigate(`/recipes/recipe/${recipe._id}`)} sx={{ mb: 1 }}>
                   <CardActionArea>
-                    <CardMedia component="img" height="140" image={recipe.recipeImage} alt="green iguana" />
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={recipe.isSeeded ? recipe.recipeImage : `http://localhost:5000/uploads/${recipe.recipeImage}`}
+                      alt={recipe.name}
+                    />
                     <CardContent>
                       <div style={{ width: 200, whiteSpace: "nowrap" }}>
                         <Box
@@ -67,7 +71,7 @@ function MoreLikeThisCard({ category, idToAvoid }) {
                           {recipe.name}
                         </Box>
                       </div>
-                      <Rating name="half-rating" value={average(recipe.rating)} precision={0.5} />
+                      <Rating name="half-rating" value={average(recipe.rating)} precision={0.5} readOnly />
                     </CardContent>
                   </CardActionArea>
                 </Card>
