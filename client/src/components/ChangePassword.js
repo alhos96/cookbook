@@ -30,7 +30,6 @@ function ChangePassword() {
   useEffect(() => {
     return () => {
       dispatch(messageReset());
-      dispatch(userLoggedOut());
     };
   }, []);
 
@@ -42,6 +41,12 @@ function ChangePassword() {
       <Box
         onSubmit={(e) => {
           onSubmit(e, dispatch, editProfile, `/users/change-password/`, patch, userInput, token);
+          setTimeout(() => {
+            if (!message) {
+              dispatch(userLoggedOut());
+              navigate("/login");
+            }
+          }, 3000);
         }}
         component="form"
         fullWidth

@@ -3,6 +3,7 @@ import { Box, Container, FormControl, Typography, TextField, Button, Divider, Ic
 import { Edit, Delete } from "@mui/icons-material";
 //helpers
 import { getUserInfo, editProfile, messageReset, userLoggedOut } from "../store/usersSlice";
+import { getRecipes } from "../store/recipesSlice";
 import { helpers, methods } from "../helpers";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,8 +43,6 @@ function MyProfile() {
       dispatch(messageReset());
     };
   }, []);
-  console.log(userInfo);
-  console.log(userInput);
 
   useEffect(() => {
     userInfo && setUserInput({ ...userInput, name: userInfo.name, email: userInfo.email, password: "" });
@@ -120,6 +119,13 @@ function MyProfile() {
           <Box
             onSubmit={(e) => {
               onSubmit(e, dispatch, editProfile, `/users/edit-profile/`, patch, userInput, token);
+              setTimeout(() => {
+                if (!message) {
+                  dispatch(userLoggedOut());
+                  navigate("/login");
+                  console.log("object");
+                }
+              }, 3000);
             }}
             component="form"
             fullWidth
