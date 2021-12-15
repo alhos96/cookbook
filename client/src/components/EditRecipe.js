@@ -51,7 +51,6 @@ function EditRecipe() {
     setIngredients(recipe.ingredients);
     setInstructions(recipe.instructions);
     setCategory(recipe.category);
-    console.log(recipe);
   }, [recipe]);
 
   // function
@@ -76,7 +75,7 @@ function EditRecipe() {
       <Typography color="primary" gutterBottom variant="h6" component="div">
         Edit Recipe
       </Typography>
-      <img src={file || `http://localhost:5000/uploads/${img}`} width="60px" height="50px" />
+      {file && <img src={file || `http://localhost:5000/uploads/${img}`} width="60px" height="50px" />}
       {recipe && (
         <Box
           onSubmit={(e) => {

@@ -63,7 +63,7 @@ function CreateRecipe() {
       <Typography color="primary" gutterBottom variant="h6" component="div">
         Create Recipe
       </Typography>
-      <img src={file} width="60px" height="50px" />
+      {file && <img src={file} width="60px" height="50px" />}
       <Box
         onSubmit={(e) => {
           e.preventDefault();
