@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, FormControl, Typography, TextField, Button, Divider } from "@mui/material";
+import { Box, Typography, TextField, Button, Divider } from "@mui/material";
 
 //helpers
 import { userLogin, messageReset } from "../store/usersSlice";
@@ -25,6 +25,7 @@ function Login() {
   //side effects
   useEffect(() => {
     loggedIn && navigate("/");
+    // eslint-disable-next-line
   }, [loggedIn]);
 
   return (

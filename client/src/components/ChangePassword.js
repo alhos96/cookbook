@@ -31,7 +31,7 @@ function ChangePassword() {
     return () => {
       dispatch(messageReset());
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <Box className="ViewProfile" style={{ maxWidth: "500px", margin: "auto" }}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Box, Typography, Card, CardContent, CardMedia, Button, CardActionArea, Divider, Rating } from "@mui/material";
+import { Box, Typography, Card, CardContent, CardMedia, Button, CardActionArea, Rating } from "@mui/material";
 //helpers
 import { getSimilarRecipes } from "../store/recipesSlice";
 import { helpers, methods } from "../helpers";
@@ -10,7 +10,7 @@ function MoreLikeThisCard({ category, idToAvoid }) {
   //helpers
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { changeHandler, onSubmit, average } = helpers;
+  const { average } = helpers;
   const { get } = methods;
 
   //global state
@@ -23,6 +23,7 @@ function MoreLikeThisCard({ category, idToAvoid }) {
   //side effects
   useEffect(() => {
     dispatch(getSimilarRecipes(`/recipes/similar-recipes/${category}`, get, token));
+    // eslint-disable-next-line
   }, []);
 
   //functions
@@ -45,6 +46,7 @@ function MoreLikeThisCard({ category, idToAvoid }) {
       </Typography>
       <div className="More-like-this">
         {recipes.length > 1 ? (
+          // eslint-disable-next-line
           recipes.map((recipe, index) => {
             if (recipe._id !== idToAvoid && index < showAmount) {
               return (

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiRequestStarted } from "./actions";
-import { useNavigate } from "react-router-dom";
+
 const slice = createSlice({
   initialState: {
     loggedIn: false,

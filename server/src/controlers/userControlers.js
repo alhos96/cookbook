@@ -13,7 +13,7 @@ exports.register = async (req, res, next) => {
       });
 
     res.status(400).json({
-      message: "Only letters and numbers allowed!",
+      message: "Only letters and numbers allowed in name!",
     });
     const err = new Error("Too long or has special characters", 400);
     return next(err);

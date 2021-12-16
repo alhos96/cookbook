@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React from "react";
 import {
   Navbar,
   Login,
@@ -12,7 +12,7 @@ import {
   Recipes,
   ChangePassword,
 } from "./components";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./auth/PrivateRoute";
 import { Container } from "@mui/material";
 

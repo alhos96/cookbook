@@ -1,18 +1,16 @@
 import React from "react";
-import { Container, Box, Typography, Card, CardContent, CardMedia, CardActions, CardActionArea, Divider } from "@mui/material";
-import { helpers, methods } from "../helpers";
+import { Box, Typography, Card, CardContent, CardActionArea } from "@mui/material";
+import { helpers } from "../helpers";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 //helpers
 
 function Latest() {
   //helpers
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { changeHandler, onSubmit, average, findLatest } = helpers;
-  const { post } = methods;
+  const { findLatest } = helpers;
 
   //global state
   const recipes = useSelector((state) => state.recipes.recipes);

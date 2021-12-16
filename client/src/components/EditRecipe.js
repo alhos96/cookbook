@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Box, Container, FormControl, Typography, TextField, Button, Divider, Input, IconButton, Rating } from "@mui/material";
-import { PhotoCamera } from "@mui/icons-material";
+import { Box, Typography, TextField, Button, Divider, Rating } from "@mui/material";
 
 //helpers
-import { getOneRecipe, userLeft, editRecipe } from "../store/recipesSlice";
+import { getOneRecipe, userLeft } from "../store/recipesSlice";
 import axios from "axios";
 import { helpers, methods } from "../helpers";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function EditRecipe() {
   //helpers
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { changeHandler, onSubmit, average } = helpers;
-  const { get, patch } = methods;
-  const [expanded, setExpanded] = React.useState(false);
+  const { average } = helpers;
+  const { get } = methods;
 
   //global state
   const recipe = useSelector((state) => state.recipes.oneRecipe);
   const token = sessionStorage.getItem("token");
-  const user = sessionStorage.getItem("user");
 
   //local state
   const url = window.location.pathname;
@@ -40,7 +35,7 @@ function EditRecipe() {
     return () => {
       dispatch(userLeft());
     };
-  }, [url]);
+  }, [url, get, dispatch, token]);
 
   useEffect(() => {
     setImg(recipe.recipeImage);
@@ -75,7 +70,7 @@ function EditRecipe() {
       <Typography color="primary" gutterBottom variant="h6" component="div">
         Edit Recipe
       </Typography>
-      {file && <img src={file || `http://localhost:5000/uploads/${img}`} width="60px" height="50px" />}
+      {file && <img alt="upload" src={file || `http://localhost:5000/uploads/${img}`} width="60px" height="50px" />}
       {recipe && (
         <Box
           onSubmit={(e) => {

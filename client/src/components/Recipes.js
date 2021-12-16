@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Box, Typography, Card, CardContent, CardMedia, CardActions, CardActionArea, Rating, Button, TextField } from "@mui/material";
 
 //helpers
-import { helpers, methods } from "../helpers";
+import { helpers } from "../helpers";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Recipes() {
   //helpers
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { changeHandler, onSubmit, average } = helpers;
-  const { post } = methods;
+
+  const { average } = helpers;
 
   //global state
-  const token = sessionStorage.getItem("token");
   const recipes = useSelector((state) => state.recipes.recipes);
 
   //local state
@@ -29,6 +27,7 @@ function Recipes() {
       <div className="Recipes">
         {recipes &&
           recipes
+            // eslint-disable-next-line
             .filter((item) => {
               if (searchTerm === "") {
                 return item;
@@ -36,6 +35,7 @@ function Recipes() {
                 return item;
               }
             })
+            // eslint-disable-next-line
             .map((recipe, index) => {
               if (index < showAmount) {
                 return (

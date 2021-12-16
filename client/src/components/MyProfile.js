@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Box, Container, FormControl, Typography, TextField, Button, Divider, IconButton, Popover } from "@mui/material";
+import { Box, Typography, TextField, Button, Divider, IconButton, Popover } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 //helpers
 import { getUserInfo, editProfile, messageReset, userLoggedOut } from "../store/usersSlice";
-import { getRecipes } from "../store/recipesSlice";
 import { helpers, methods } from "../helpers";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +19,6 @@ function MyProfile() {
   const message = useSelector((state) => state.users.message);
   const userInfo = useSelector((state) => state.users.user);
   const token = sessionStorage.getItem("token");
-  const user = sessionStorage.getItem("user");
 
   //local state
   const [userInput, setUserInput] = useState({
@@ -42,10 +40,12 @@ function MyProfile() {
     return () => {
       dispatch(messageReset());
     };
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     userInfo && setUserInput({ ...userInput, name: userInfo.name, email: userInfo.email, password: "" });
+    // eslint-disable-next-line
   }, [userInfo]);
 
   return (

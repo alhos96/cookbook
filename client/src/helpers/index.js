@@ -24,7 +24,7 @@ const helpers = {
 
   findTopRatings: (recipes, average, direction) => {
     let ranking = [];
-
+    // eslint-disable-next-line
     recipes.map((recipe, index) => {
       let ranked = {
         rating: average(recipe.rating),
@@ -49,7 +49,7 @@ const helpers = {
 
   findLatest: (recipes, direction) => {
     let latest = [];
-
+    // eslint-disable-next-line
     recipes.map((recipe, index) => {
       let dates = {
         date: recipe.createdAt,
@@ -92,7 +92,7 @@ const helpers = {
   // sorting
   sortCategory: (recipes, limit, direction, setData) => {
     let names = [];
-
+    // eslint-disable-next-line
     recipes.map((recipe, index) => {
       let name = {
         name: recipe.category,
@@ -132,7 +132,7 @@ const helpers = {
   },
   sortRatings: (recipes, average, limit, direction, setData) => {
     let ranking = [];
-
+    // eslint-disable-next-line
     recipes.map((recipe, index) => {
       let ranked = {
         rating: recipe.rating.length > 0 ? average(recipe.rating) : 0,
@@ -157,7 +157,7 @@ const helpers = {
 
   sortLatest: (recipes, limit, direction, setData) => {
     let latest = [];
-
+    // eslint-disable-next-line
     recipes.map((recipe, index) => {
       let dates = {
         date: recipe.createdAt,
@@ -181,7 +181,7 @@ const helpers = {
 
   sortAlphabeticalOrder: (recipes, limit, direction, setData) => {
     let names = [];
-
+    // eslint-disable-next-line
     recipes.map((recipe, index) => {
       let name = {
         name: recipe.name,

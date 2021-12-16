@@ -18,11 +18,12 @@ function Register() {
   const isRegistered = useSelector((state) => state.users.registered);
 
   //local state
-  const [userInput, setUserInput] = useState({ email: "", email: "", password: "", confirmPasword: "" });
+  const [userInput, setUserInput] = useState({ name: "", email: "", password: "", confirmPasword: "" });
 
   //side effects
   useEffect(() => {
     isRegistered && navigate("/login");
+    // eslint-disable-next-line
   }, [isRegistered]);
 
   return (

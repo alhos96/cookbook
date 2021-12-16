@@ -1,16 +1,14 @@
 import React from "react";
-import { Container, Box, Typography, Card, CardContent, CardMedia, CardActions, CardActionArea, Divider, Rating } from "@mui/material";
+import { Box, Typography, Card, CardContent, CardActionArea, Rating } from "@mui/material";
 //helpers
-import { helpers, methods } from "../helpers";
+import { helpers } from "../helpers";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 function TopRatings() {
   //helpers
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { changeHandler, onSubmit, average, findTopRatings } = helpers;
-  const { post } = methods;
+  const { average, findTopRatings } = helpers;
 
   //global state
   const recipes = useSelector((state) => state.recipes.recipes);

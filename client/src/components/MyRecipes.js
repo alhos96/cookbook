@@ -2,14 +2,8 @@ import React, { useState, useEffect } from "react";
 import {
   Box,
   Typography,
-  Card,
-  CardContent,
-  CardMedia,
-  CardActions,
-  CardActionArea,
   Rating,
   Button,
-  TextField,
   TableHead,
   TableRow,
   Table,
@@ -29,7 +23,7 @@ function MyRecipes() {
   //helpers
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { changeHandler, onSubmit, average, sortRatings, sortLatest, sortAlphabeticalOrder, sortCategory } = helpers;
+  const { average, sortRatings, sortLatest, sortAlphabeticalOrder, sortCategory } = helpers;
   const { get, remove } = methods;
 
   //global state
@@ -39,11 +33,11 @@ function MyRecipes() {
   //local state
   const [data, setData] = useState([]);
   const [orderDirection, setOrderDirection] = useState("asc");
-  const [count, setCount] = useState(0);
 
   //side effects
   useEffect(() => {
     dispatch(getUserRecipes("/recipes/users-recipes", get, token, false));
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -144,7 +138,6 @@ function MyRecipes() {
                         id={recipe._id}
                         size="small"
                         onClick={(e) => {
-                          setCount((e) => e + 1);
                           dispatch(deleteRecipe(`/recipes/delete-recipe/${e.target.id}`, remove, token, setData));
                         }}
                       >

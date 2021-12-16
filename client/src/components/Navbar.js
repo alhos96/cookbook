@@ -17,8 +17,6 @@ function Navbar() {
 
   //global state
   const [user, setUser] = useState("");
-  const token = sessionStorage.getItem("token");
-  const recipes = useSelector((state) => state.recipes.recipes);
   const userName = useSelector((state) => state.users.user.name);
 
   //popper state
@@ -44,7 +42,13 @@ function Navbar() {
           </>
         )}
 
-        <img style={{ left: "15px", bottom: "10%", cursor: "pointer" }} onClick={() => navigate("/")} className="logo" src={logo} />
+        <img
+          alt="logo"
+          style={{ left: "15px", bottom: "10%", cursor: "pointer" }}
+          onClick={() => navigate("/")}
+          className="logo"
+          src={logo}
+        />
       </Stack>
 
       {/* POPOVER */}

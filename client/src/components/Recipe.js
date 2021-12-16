@@ -71,6 +71,7 @@ function Recipe() {
     return () => {
       dispatch(userLeft());
     };
+    // eslint-disable-next-line
   }, [url]);
 
   useEffect(() => {

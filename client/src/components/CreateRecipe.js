@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Box, Container, MenuItem, Typography, TextField, Button, Divider, Input, IconButton } from "@mui/material";
-import { PhotoCamera } from "@mui/icons-material";
+import { Box, MenuItem, Typography, TextField, Button, Divider } from "@mui/material";
 
 //helpers
 import axios from "axios";
 import { helpers, methods } from "../helpers";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { createRecipe } from "../store/recipesSlice";
 
 function CreateRecipe() {
   //helpers
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { changeHandler, onSubmit, getSomething, postSomething } = helpers;
-  const { post, get } = methods;
+
+  const { getSomething } = helpers;
+  const { get } = methods;
 
   //global state
   const user = sessionStorage.getItem("user");
@@ -25,7 +22,9 @@ function CreateRecipe() {
   const [file, setFile] = useState("");
   const [img, setImg] = useState("");
   const [name, setName] = useState("");
+  // eslint-disable-next-line
   const [author, setAuthor] = useState(user);
+  // eslint-disable-next-line
   const [rating, setRating] = useState([]);
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -33,13 +32,12 @@ function CreateRecipe() {
   const [instructions, setInstructions] = useState("");
   const [label, setLabel] = useState("Ingredients");
   const [categories, setCategories] = useState([]);
-  //recipe that will be returned as response
-  const [createdRecipe, setCreatedRecipe] = useState([]);
 
   //side effects
+  // eslint-disable-next-line
   useEffect(() => {
     getSomething(get, "categories.json", setCategories);
-  }, []);
+  }, [get, getSomething]);
 
   //function
   function createRecipe() {
@@ -63,7 +61,7 @@ function CreateRecipe() {
       <Typography color="primary" gutterBottom variant="h6" component="div">
         Create Recipe
       </Typography>
-      {file && <img src={file} width="60px" height="50px" />}
+      {file && <img alt="upload" src={file} width="60px" height="50px" />}
       <Box
         onSubmit={(e) => {
           e.preventDefault();
@@ -142,6 +140,7 @@ function CreateRecipe() {
           margin="dense"
           onChange={(e) => setCategory(e.target.value)}
           select
+          value=""
         >
           {categories.map((cat, i) => {
             return (
