@@ -49,6 +49,7 @@ const slice = createSlice({
     messageReset: (users, { payload }) => {
       users.message = "";
       users.error = "";
+      users.registered = false;
     },
     gotError: (users, { payload }) => {
       users.error = payload;
