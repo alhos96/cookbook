@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Card, CardContent, CardMedia, Button, CardActionArea, Rating } from "@mui/material";
+import { Box, Typography, Card, CardContent, CardMedia, Button, CardActionArea, Rating, Fade } from "@mui/material";
 //helpers
 import { getSimilarRecipes } from "../store/recipesSlice";
 import { helpers, methods } from "../helpers";
@@ -19,10 +19,12 @@ function MoreLikeThisCard({ category, idToAvoid }) {
 
   //local state
   const [showAmount, setShowAmount] = useState(3);
+  const [fade, setFade] = useState(false);
 
   //side effects
   useEffect(() => {
     dispatch(getSimilarRecipes(`/recipes/similar-recipes/${category}`, get, token));
+    setFade(true);
     // eslint-disable-next-line
   }, []);
 
@@ -50,33 +52,35 @@ function MoreLikeThisCard({ category, idToAvoid }) {
           recipes.map((recipe, index) => {
             if (recipe._id !== idToAvoid && index < showAmount) {
               return (
-                <Card key={index} id={recipe._id} onClick={(e) => navigate(`/recipes/recipe/${recipe._id}`)} sx={{ mb: 1 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      height="140"
-                      image={recipe.isSeeded ? recipe.recipeImage : `http://localhost:5000/uploads/${recipe.recipeImage}`}
-                      alt={recipe.name}
-                    />
-                    <CardContent>
-                      <div style={{ width: 200, whiteSpace: "nowrap" }}>
-                        <Box
-                          component="h2"
-                          sx={{
-                            fontWeight: 510,
-                            textOverflow: "ellipsis",
-                            my: 2,
-                            overflow: "hidden",
-                            bgcolor: "background.paper",
-                          }}
-                        >
-                          {recipe.name}
-                        </Box>
-                      </div>
-                      <Rating name="half-rating" value={average(recipe.rating)} precision={0.5} readOnly />
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
+                <Fade in={fade} timeout={{ enter: 2500 }} key={index}>
+                  <Card key={index} id={recipe._id} onClick={(e) => navigate(`/recipes/recipe/${recipe._id}`)} sx={{ mb: 1 }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="140"
+                        image={recipe.isSeeded ? recipe.recipeImage : `http://localhost:5000/uploads/${recipe.recipeImage}`}
+                        alt={recipe.name}
+                      />
+                      <CardContent>
+                        <div style={{ width: 200, whiteSpace: "nowrap" }}>
+                          <Box
+                            component="h2"
+                            sx={{
+                              fontWeight: 510,
+                              textOverflow: "ellipsis",
+                              my: 2,
+                              overflow: "hidden",
+                              bgcolor: "background.paper",
+                            }}
+                          >
+                            {recipe.name}
+                          </Box>
+                        </div>
+                        <Rating name="half-rating" value={+average(recipe.rating)} precision={0.5} readOnly />
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Fade>
               );
             }
           })

@@ -12,6 +12,7 @@ import {
   CircularProgress,
   Popover,
   Button,
+  Fade,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Edit, Grade } from "@mui/icons-material";
@@ -59,6 +60,7 @@ function Recipe() {
     ingredients: "",
     instructions: "",
   });
+  const [fade, setFade] = useState(false);
 
   //popoveer state
   const [anchorEl, setAnchorEl] = useState(null);
@@ -73,6 +75,10 @@ function Recipe() {
     };
     // eslint-disable-next-line
   }, [url]);
+
+  useEffect(() => {
+    setFade(true);
+  }, []);
 
   useEffect(() => {
     setUserInput({
@@ -99,58 +105,59 @@ function Recipe() {
       <div className="Recipe">
         {recipe ? (
           <>
-            {" "}
-            <Card className="recipe-card" sx={{ mb: 2, maxWidth: "768px", margin: "auto" }}>
-              <CardHeader
-                action={
-                  <>
-                    {recipe.author !== user && (
-                      <IconButton aria-describedby={id} onClick={(e) => popoverOpen(e, setAnchorEl)} aria-label="grade">
-                        <Grade />
-                      </IconButton>
-                    )}
+            <Fade in={fade} timeout={{ enter: 2000 }}>
+              <Card className="recipe-card" sx={{ mb: 2, maxWidth: "768px", margin: "auto" }}>
+                <CardHeader
+                  action={
+                    <>
+                      {recipe.author !== user && (
+                        <IconButton aria-describedby={id} onClick={(e) => popoverOpen(e, setAnchorEl)} aria-label="grade">
+                          <Grade />
+                        </IconButton>
+                      )}
 
-                    {recipe.author === user && (
-                      <IconButton onClick={() => navigate(`/recipes/edit-recipe/${recipe._id}`)} aria-label="settings">
-                        <Edit />
-                      </IconButton>
-                    )}
-                  </>
-                }
-                title={`${recipe.name} by ${recipe.author}`}
-                subheader={
-                  recipe.rating.length > 3 ? (
-                    <Rating name="half-rating" defaultValue={average(recipe.rating)} precision={0.5} readOnly />
-                  ) : (
-                    "3 or more ratings needed"
-                  )
-                }
-              />
-              <CardMedia
-                className="recipe-img"
-                component="img"
-                height="194"
-                image={recipe.isSeeded ? recipe.recipeImage : `http://localhost:5000/uploads/${recipe.recipeImage}`}
-                alt={recipe.name}
-              />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  {recipe.description}
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <Typography sx={{ ml: 1 }} children={recipe.category} variant="body2" />
-                <ExpandMore expand={expanded} onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
-                  <ExpandMoreIcon />
-                </ExpandMore>
-              </CardActions>
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
+                      {recipe.author === user && (
+                        <IconButton onClick={() => navigate(`/recipes/edit-recipe/${recipe._id}`)} aria-label="settings">
+                          <Edit />
+                        </IconButton>
+                      )}
+                    </>
+                  }
+                  title={`${recipe.name} by ${recipe.author}`}
+                  subheader={
+                    recipe.rating.length > 3 ? (
+                      <Rating name="half-rating" value={+average(recipe.rating)} precision={0.5} readOnly />
+                    ) : (
+                      "3 or more ratings needed"
+                    )
+                  }
+                />
+                <CardMedia
+                  className="recipe-img"
+                  component="img"
+                  height="194"
+                  image={recipe.isSeeded ? recipe.recipeImage : `http://localhost:5000/uploads/${recipe.recipeImage}`}
+                  alt={recipe.name}
+                />
                 <CardContent>
-                  <Typography paragraph>Instructions:</Typography>
-                  <Typography paragraph>{recipe.instructions}</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {recipe.description}
+                  </Typography>
                 </CardContent>
-              </Collapse>
-            </Card>
+                <CardActions disableSpacing>
+                  <Typography sx={{ ml: 1 }} children={recipe.category} variant="body2" />
+                  <ExpandMore expand={expanded} onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
+                    <ExpandMoreIcon />
+                  </ExpandMore>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                  <CardContent>
+                    <Typography paragraph>Instructions:</Typography>
+                    <Typography paragraph>{recipe.instructions}</Typography>
+                  </CardContent>
+                </Collapse>
+              </Card>
+            </Fade>
             {/*  MORE LIKE THIS */}
             <MoreLikeThisCard category={recipe.category} nameToAvoid={recipe.name} idToAvoid={recipe._id} />
             {/* POPOVER */}
