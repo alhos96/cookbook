@@ -32,7 +32,7 @@ function TopRatings() {
                       {recipe.name}
                     </Typography>
                     <Typography sx={{ flex: "1" }} variant="body2" color="text.secondary">
-                      <Rating name="half-rating" value={average(recipe.rating) || ""} precision={0.5} readOnly />
+                      <Rating name="half-rating" value={+average(recipe.rating) || ""} precision={0.5} readOnly />
                     </Typography>
                   </CardContent>
                 </CardActionArea>

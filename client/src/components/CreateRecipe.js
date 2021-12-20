@@ -72,7 +72,7 @@ function CreateRecipe() {
         enctype="multipart/form-data"
         fullWidth
       >
-        <label htmlFor="icon-button-file">
+        <label htmlFor="img">
           <input
             onChange={(e) => {
               setFile(URL.createObjectURL(e.target.files[0]));
@@ -132,7 +132,6 @@ function CreateRecipe() {
         />
         <br></br>
         <TextField
-          labelId="select"
           id="select"
           label="Category"
           name="category"

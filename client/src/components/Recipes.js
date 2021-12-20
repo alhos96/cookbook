@@ -48,7 +48,7 @@ function Recipes() {
                     <CardActionArea>
                       <CardMedia sx={{ p: 1 }}>
                         {recipe.rating.length > 3 ? (
-                          <Rating name="half-rating" value={average(recipe.rating)} precision={0.5} readOnly />
+                          <Rating name="half-rating" value={+average(recipe.rating)} precision={0.5} readOnly />
                         ) : (
                           "3 or more ratings needed"
                         )}

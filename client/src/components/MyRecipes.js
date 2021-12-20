@@ -122,7 +122,7 @@ function MyRecipes() {
                 <TableRow>
                   <TableCell>{recipe.name}</TableCell>
                   <TableCell>
-                    <Rating name="half-rating" value={average(recipe.rating)} precision={0.5} readOnly />
+                    <Rating name="half-rating" value={+average(recipe.rating)} precision={0.5} readOnly />
                   </TableCell>
                   <TableCell>{date}</TableCell>
                   <TableCell>{recipe.category}</TableCell>
@@ -149,7 +149,9 @@ function MyRecipes() {
               );
             })
           ) : (
-            <Typography>You don't have any recipes :\</Typography>
+            <tr>
+              <td>You don't have any recipes :\</td>
+            </tr>
           )}
         </TableBody>
       </Table>
