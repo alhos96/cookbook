@@ -6,7 +6,7 @@ const config = require("../../config");
 exports.register = async (req, res, next) => {
   const { name, email, password, confirmPassword } = req.body;
 
-  if (!/^[a-zA-Z0-9]{4,10}$/.test(name)) {
+  if (!/^[a-zA-Z0-9]{1,10}$/.test(name)) {
     if (name.length > 10)
       res.status(400).json({
         message: "Name too long. Maximum 10 characters.",
